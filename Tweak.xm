@@ -17,7 +17,7 @@
     {
         %orig;
 
-		static int labelFrameSize = 30;
+	static int labelFrameSize = 30;
 
         self.pctLabel.frame = CGRectMake(self.frame.size.width*0.5 - (labelFrameSize / 2),0,labelFrameSize,labelFrameSize);
         NSString *newLabelTxt;
