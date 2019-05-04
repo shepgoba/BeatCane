@@ -1,0 +1,10 @@
+Package: com.shepgoba.beetcane
+Name: BeetCane
+Depends: mobilesubstrate
+Architecture: iphoneos-arm
+Description: Add a percent for music completion!
+Maintainer: shepgoba
+Author: shepgoba
+Section: Tweaks
+Version: 1.0
+Installed-Size: 108
