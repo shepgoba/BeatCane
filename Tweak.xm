@@ -8,7 +8,6 @@
         orig.pctLabel = [[UILabel alloc] init];
         orig.pctLabel.textColor = [UIColor whiteColor];
         orig.pctLabel.text = @"0%";
-        //orig.pctLabel.center = CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.85);
         [orig.pctLabel setTextAlignment:NSTextAlignmentCenter];
         orig.pctLabel.font = [self.pctLabel.font fontWithSize:10];
         return orig;
