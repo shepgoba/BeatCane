@@ -1,7 +1,11 @@
 #import "BeatCane.h"
 
 %hook MediaControlsTimeControl
-%property (nonatomic, retain) UILabel *pctLabel;
+
+    //Add the percent label property to the MediaControlsTimeControl class
+    %property (nonatomic, retain) UILabel *pctLabel;
+
+    //Initialize the label once instead of every update call
     - (id) initWithFrame:(CGRect)frame
     {
         MediaControlsTimeControl *orig = %orig;
@@ -9,7 +13,7 @@
         orig.pctLabel.textColor = [UIColor whiteColor];
         orig.pctLabel.text = @"0%";
         [orig.pctLabel setTextAlignment:NSTextAlignmentCenter];
-        orig.pctLabel.font = [self.pctLabel.font fontWithSize:10];
+        orig.pctLabel.font = [self.pctLabel.font fontWithSize:11];
         return orig;
     }
 
@@ -17,16 +21,20 @@
     {
         %orig;
 
-	static int labelFrameSize = 30;
+	    static int labelFrameSize = 30;
 
-        self.pctLabel.frame = CGRectMake(self.frame.size.width*0.5 - (labelFrameSize / 2),self.frame.size.height-(labelFrameSize-3),labelFrameSize,labelFrameSize);
+        // Set the frame equal to the bottom middle. (the +1.5 X and -3 Y are for small offsets)
+        self.pctLabel.frame = CGRectMake(self.frame.size.width*0.5 - (labelFrameSize / 2) + 1.5,self.frame.size.height-(labelFrameSize-3),labelFrameSize,labelFrameSize);
         NSString *newLabelTxt;
+
+        // Make sure the slider exists. If it does, we calculate the percent. Otherwise (which shouldn't happen) set it to 0%
         if (self.elapsedTrack)
         {
             newLabelTxt = [NSString stringWithFormat:@"%i%%",(int) roundf(100*(self.elapsedTrack.frame.size.width/self.frame.size.width))];
         } else {
             newLabelTxt = @"0%";
         }
+
         self.pctLabel.text = newLabelTxt;
         [self addSubview: self.pctLabel];
     }
