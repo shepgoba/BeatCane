@@ -21,7 +21,7 @@
     {
         %orig;
 
-	    static int labelFrameSize = 30;
+	static int labelFrameSize = 30;
 
         // Set the frame equal to the bottom middle. (the +1.5 X and -3 Y are for small offsets)
         self.pctLabel.frame = CGRectMake(self.frame.size.width * 0.5 - (labelFrameSize / 2) + 1.5, self.frame.size.height - (labelFrameSize-3),labelFrameSize,labelFrameSize);
