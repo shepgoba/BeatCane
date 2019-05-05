@@ -17,7 +17,7 @@
         return orig;
     }
 
-    - (void) _updateTimeControl
+    - (void) layoutSubviews
     {
         %orig;
 
