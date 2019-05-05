@@ -1,4 +1,4 @@
-#import "Tweak.h"
+#import "BeatCane.h"
 
 %hook MediaControlsTimeControl
 %property (nonatomic, retain) UILabel *pctLabel;
@@ -8,7 +8,6 @@
         orig.pctLabel = [[UILabel alloc] init];
         orig.pctLabel.textColor = [UIColor whiteColor];
         orig.pctLabel.text = @"0%";
-        //orig.pctLabel.center = CGPointMake(self.bounds.size.width*0.5, self.bounds.size.height*0.85);
         [orig.pctLabel setTextAlignment:NSTextAlignmentCenter];
         orig.pctLabel.font = [self.pctLabel.font fontWithSize:10];
         return orig;
@@ -20,7 +19,7 @@
 
 		static int labelFrameSize = 30;
 
-        self.pctLabel.frame = CGRectMake(self.frame.size.width*0.5 - (labelFrameSize / 2),0,labelFrameSize,labelFrameSize);
+        self.pctLabel.frame = CGRectMake(self.frame.size.width*0.5 - (labelFrameSize / 2),self.frame.size.height-(labelFrameSize-3),labelFrameSize,labelFrameSize);
         NSString *newLabelTxt;
         if (self.elapsedTrack)
         {

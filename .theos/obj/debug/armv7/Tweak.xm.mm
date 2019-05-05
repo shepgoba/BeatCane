@@ -34,7 +34,6 @@ __attribute__((used)) static UILabel * _logos_method$_ungrouped$MediaControlsTim
         orig.pctLabel = [[UILabel alloc] init];
         orig.pctLabel.textColor = [UIColor whiteColor];
         orig.pctLabel.text = @"0%";
-        
         [orig.pctLabel setTextAlignment:NSTextAlignmentCenter];
         orig.pctLabel.font = [self.pctLabel.font fontWithSize:10];
         return orig;
@@ -60,4 +59,4 @@ __attribute__((used)) static UILabel * _logos_method$_ungrouped$MediaControlsTim
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$MediaControlsTimeControl = objc_getClass("MediaControlsTimeControl"); MSHookMessageEx(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(initWithFrame:), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$initWithFrame$, (IMP*)&_logos_orig$_ungrouped$MediaControlsTimeControl$initWithFrame$);MSHookMessageEx(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(_updateTimeControl), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$_updateTimeControl, (IMP*)&_logos_orig$_ungrouped$MediaControlsTimeControl$_updateTimeControl);{ char _typeEncoding[1024]; sprintf(_typeEncoding, "%s@:", @encode(UILabel *)); class_addMethod(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(pctLabel), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$pctLabel, _typeEncoding); sprintf(_typeEncoding, "v@:%s", @encode(UILabel *)); class_addMethod(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(setPctLabel:), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$setPctLabel, _typeEncoding); } } }
-#line 35 "Tweak.xm"
+#line 34 "Tweak.xm"

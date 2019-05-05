@@ -1,5 +1,5 @@
-#line 1 "Tweak.xm"
-#import "Tweak.h"
+#line 1 "BeatCane.xm"
+#import "BeatCane.h"
 
 
 #include <substrate.h>
@@ -25,7 +25,7 @@
 @class MediaControlsTimeControl; 
 static MediaControlsTimeControl* (*_logos_orig$_ungrouped$MediaControlsTimeControl$initWithFrame$)(_LOGOS_SELF_TYPE_INIT MediaControlsTimeControl*, SEL, CGRect) _LOGOS_RETURN_RETAINED; static MediaControlsTimeControl* _logos_method$_ungrouped$MediaControlsTimeControl$initWithFrame$(_LOGOS_SELF_TYPE_INIT MediaControlsTimeControl*, SEL, CGRect) _LOGOS_RETURN_RETAINED; static void (*_logos_orig$_ungrouped$MediaControlsTimeControl$_updateTimeControl)(_LOGOS_SELF_TYPE_NORMAL MediaControlsTimeControl* _LOGOS_SELF_CONST, SEL); static void _logos_method$_ungrouped$MediaControlsTimeControl$_updateTimeControl(_LOGOS_SELF_TYPE_NORMAL MediaControlsTimeControl* _LOGOS_SELF_CONST, SEL); 
 
-#line 3 "Tweak.xm"
+#line 3 "BeatCane.xm"
 
 __attribute__((used)) static UILabel * _logos_method$_ungrouped$MediaControlsTimeControl$pctLabel(MediaControlsTimeControl * __unused self, SEL __unused _cmd) { return (UILabel *)objc_getAssociatedObject(self, (void *)_logos_method$_ungrouped$MediaControlsTimeControl$pctLabel); }; __attribute__((used)) static void _logos_method$_ungrouped$MediaControlsTimeControl$setPctLabel(MediaControlsTimeControl * __unused self, SEL __unused _cmd, UILabel * rawValue) { objc_setAssociatedObject(self, (void *)_logos_method$_ungrouped$MediaControlsTimeControl$pctLabel, rawValue, OBJC_ASSOCIATION_RETAIN_NONATOMIC); }
 
@@ -45,7 +45,7 @@ __attribute__((used)) static UILabel * _logos_method$_ungrouped$MediaControlsTim
 
 		static int labelFrameSize = 30;
 
-        self.pctLabel.frame = CGRectMake(self.frame.size.width*0.5 - (labelFrameSize / 2),0,labelFrameSize,labelFrameSize);
+        self.pctLabel.frame = CGRectMake(self.frame.size.width*0.5 - (labelFrameSize / 2),self.frame.size.height-(labelFrameSize-3),labelFrameSize,labelFrameSize);
         NSString *newLabelTxt;
         if (self.elapsedTrack)
         {
@@ -59,4 +59,4 @@ __attribute__((used)) static UILabel * _logos_method$_ungrouped$MediaControlsTim
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$MediaControlsTimeControl = objc_getClass("MediaControlsTimeControl"); MSHookMessageEx(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(initWithFrame:), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$initWithFrame$, (IMP*)&_logos_orig$_ungrouped$MediaControlsTimeControl$initWithFrame$);MSHookMessageEx(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(_updateTimeControl), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$_updateTimeControl, (IMP*)&_logos_orig$_ungrouped$MediaControlsTimeControl$_updateTimeControl);{ char _typeEncoding[1024]; sprintf(_typeEncoding, "%s@:", @encode(UILabel *)); class_addMethod(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(pctLabel), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$pctLabel, _typeEncoding); sprintf(_typeEncoding, "v@:%s", @encode(UILabel *)); class_addMethod(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(setPctLabel:), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$setPctLabel, _typeEncoding); } } }
-#line 34 "Tweak.xm"
+#line 34 "BeatCane.xm"
