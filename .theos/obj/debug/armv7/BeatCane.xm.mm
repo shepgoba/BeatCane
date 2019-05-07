@@ -37,7 +37,6 @@ static MediaControlsTimeControl* (*_logos_orig$_ungrouped$MediaControlsTimeContr
         MediaControlsTimeControl *orig = _logos_orig$_ungrouped$MediaControlsTimeControl$initWithFrame$(self, _cmd, frame);
         orig.pctLabel = [[UILabel alloc] init];
         orig.pctLabel.textColor = [UIColor whiteColor];
-        orig.pctLabel.text = @"0%";
         [orig.pctLabel setTextAlignment:NSTextAlignmentCenter];
         orig.pctLabel.font = [self.pctLabel.font fontWithSize:11];
         return orig;
@@ -50,22 +49,27 @@ static MediaControlsTimeControl* (*_logos_orig$_ungrouped$MediaControlsTimeContr
 	    static int labelFrameSize = 30;
 
         
-        self.pctLabel.frame = CGRectMake(self.frame.size.width * 0.5 - (labelFrameSize / 2) + 1.5, self.frame.size.height - (labelFrameSize-3),labelFrameSize,labelFrameSize);
-        NSString *percentText;
+        self.pctLabel.frame = CGRectMake(self.frame.size.width * 0.5 - (labelFrameSize / 2) + 1.5, self.frame.size.height - (labelFrameSize - 3), labelFrameSize, labelFrameSize);
+        NSString *percentText = @"0%";
 
         
-        if (self.elapsedTrack)
-        {
-            percentText = [NSString stringWithFormat:@"%i%%",(int) roundf(100*(self.elapsedTrack.frame.size.width/self.frame.size.width))];
-        } else {
-            percentText = @"0%";
-        }
 
+
+
+
+
+        
+        if (self.elapsedTrack && !self.elapsedTrack.hidden)
+        {
+            percentText = [NSString stringWithFormat:@"%i%%", (int) roundf(clamp(self.sliderValue, 0, 1)*100)];
+        }
         
         self.pctLabel.text = percentText;
         [self addSubview: self.pctLabel];
+
+        [percentText release];
     }
 
 static __attribute__((constructor)) void _logosLocalInit() {
 {Class _logos_class$_ungrouped$MediaControlsTimeControl = objc_getClass("MediaControlsTimeControl"); MSHookMessageEx(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(initWithFrame:), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$initWithFrame$, (IMP*)&_logos_orig$_ungrouped$MediaControlsTimeControl$initWithFrame$);MSHookMessageEx(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(layoutSubviews), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$layoutSubviews, (IMP*)&_logos_orig$_ungrouped$MediaControlsTimeControl$layoutSubviews);{ char _typeEncoding[1024]; sprintf(_typeEncoding, "%s@:", @encode(UILabel *)); class_addMethod(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(pctLabel), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$pctLabel, _typeEncoding); sprintf(_typeEncoding, "v@:%s", @encode(UILabel *)); class_addMethod(_logos_class$_ungrouped$MediaControlsTimeControl, @selector(setPctLabel:), (IMP)&_logos_method$_ungrouped$MediaControlsTimeControl$setPctLabel, _typeEncoding); } } }
-#line 43 "BeatCane.xm"
+#line 47 "BeatCane.xm"

@@ -1,10 +1,10 @@
 Package: com.shepgoba.beatcane
 Name: BeatCane
-Depends: mobilesubstrate
+Depends: mobilesubstrate, firmware (>= 11.0)
 Architecture: iphoneos-arm
-Description: Add a percent indicator for music completion
+Description: Add a percent indicator for music completion on iOS 11/12
 Maintainer: shepgoba
 Author: shepgoba
 Section: Tweaks
-Version: 1.0
+Version: 1.0.1
 Installed-Size: 204
