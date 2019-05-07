@@ -33,8 +33,7 @@
                                                     otherButtonTitles:nil];
         [reet show];*/
         // Make sure the slider exists and isn't hidden. If it does, we calculate the percent. Otherwise (which shouldn't happen) set it to 0%
-        if (self.elapsedTrack && !self.elapsedTrack.hidden)
-        {
+        if (self.elapsedTrack && !self.elapsedTrack.hidden)        {
             percentText = [NSString stringWithFormat:@"%i%%", (int) roundf(clamp(self.sliderValue, 0, 1)*100)];
         }
         // Set the label's text equal to the percent text we just calculated, and add the label to the view
