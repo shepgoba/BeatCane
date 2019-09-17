@@ -8,12 +8,16 @@
     //Initialize the label once instead of every update call
     - (id) initWithFrame:(CGRect)frame
     {
-        MediaControlsTimeControl *orig = %orig;
-        orig.pctLabel = [[UILabel alloc] init];
-        orig.pctLabel.textColor = [UIColor whiteColor];
-        [orig.pctLabel setTextAlignment:NSTextAlignmentCenter];
-        orig.pctLabel.font = [self.pctLabel.font fontWithSize:11];
-        return orig;
+        self = %orig;
+        if (self)
+        {
+            self.pctLabel = [[UILabel alloc] init];
+            self.pctLabel.textColor = [UIColor whiteColor];
+            [self.pctLabel setTextAlignment:NSTextAlignmentCenter];
+            self.pctLabel.font = [UIFont systemFontOfSize:11];
+            [self addSubview: self.pctLabel];
+        }
+        return self;
     }
 
     - (void) layoutSubviews
@@ -32,8 +36,8 @@
             percentText = [NSString stringWithFormat:@"%i%%", (int) roundf(clamp(self.sliderValue, 0, 1)*100)];
         }
 
-        // Set the label's text equal to the percent text we just calculated, and add the label to the view
+        // Set the label's text equal to the percent text we just calculated
         self.pctLabel.text = percentText;
-        [self addSubview: self.pctLabel];
+        
     }
 %end
