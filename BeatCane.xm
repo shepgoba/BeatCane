@@ -5,7 +5,7 @@
     //Add the percent label property to the MediaControlsTimeControl class
     %property (nonatomic, retain) UILabel *pctLabel;
 
-    //Initialize the label once instead of every update call
+    //Initialize the label once
     - (id) initWithFrame:(CGRect)frame
     {
         self = %orig;
@@ -24,12 +24,12 @@
     {
         %orig;
 
-	static int labelFrameSize = 30;
+	    static int labelFrameSize = 30;
 
         // Set the frame equal to the bottom middle. (the +1.5 X and -3 Y are for small offsets)
         self.pctLabel.frame = CGRectMake(self.frame.size.width * 0.5 - (labelFrameSize / 2) + 1.5, self.frame.size.height - (labelFrameSize - 3), labelFrameSize, labelFrameSize);
         
-	static NSString *percentText = @"0%";
+	    static NSString *percentText = @"0%";
 
         // Make sure the slider exists and isn't hidden. If it does, we calculate the percent. Otherwise (which shouldn't happen) set it to 0%
         if (self.elapsedTrack && !self.elapsedTrack.hidden)
