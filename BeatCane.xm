@@ -2,10 +2,8 @@
 
 %hook MediaControlsTimeControl
 
-    //Add the percent label property to the MediaControlsTimeControl class
-    %property (nonatomic, retain) UILabel *pctLabel;
+%property (nonatomic, retain) UILabel *pctLabel;
 
-    //Initialize the label once
 -(id)initWithFrame:(CGRect)frame
 {
     self = %orig;
@@ -31,7 +29,7 @@
 -(void)updateSliderConstraint {
     %orig;
 
-	NSString *percentText = @"0%%";
+    NSString *percentText = @"0%%";
     if (self.elapsedTrack && !self.elapsedTrack.hidden) {
         percentText = [NSString stringWithFormat:@"%i%%", (int) roundf(clamp(self.sliderValue, 0, 1)*100)];
     }
