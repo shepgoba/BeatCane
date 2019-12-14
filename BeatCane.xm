@@ -6,39 +6,36 @@
     %property (nonatomic, retain) UILabel *pctLabel;
 
     //Initialize the label once
-    - (id) initWithFrame:(CGRect)frame
-    {
-        self = %orig;
-        if (self)
-        {
-            self.pctLabel = [[UILabel alloc] init];
-            self.pctLabel.textColor = [UIColor whiteColor];
-            [self.pctLabel setTextAlignment:NSTextAlignmentCenter];
-            self.pctLabel.font = [UIFont systemFontOfSize:11];
-            [self addSubview: self.pctLabel];
-        }
-        return self;
+-(id)initWithFrame:(CGRect)frame
+{
+    self = %orig;
+    if (self) {
+        self.pctLabel = [[UILabel alloc] init];
+        self.pctLabel.textColor = [UIColor whiteColor];
+        self.pctLabel.textAlignment = NSTextAlignmentCenter;
+        self.pctLabel.font = [UIFont systemFontOfSize:11];
+        [self.pctLabel sizeToFit];
+        
+        [self addSubview: self.pctLabel];
+    }
+    return self;
+}
+
+-(void)didMoveToWindow {
+    %orig;
+    self.pctLabel.translatesAutoresizingMaskIntoConstraints = false;
+    [self.pctLabel.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = YES;
+    [self.pctLabel.bottomAnchor constraintEqualToAnchor:self.bottomAnchor constant:-5].active = YES;
+}
+
+-(void)updateSliderConstraint {
+    %orig;
+
+	NSString *percentText = @"0%%";
+    if (self.elapsedTrack && !self.elapsedTrack.hidden) {
+        percentText = [NSString stringWithFormat:@"%i%%", (int) roundf(clamp(self.sliderValue, 0, 1)*100)];
     }
 
-    - (void) layoutSubviews
-    {
-        %orig;
-
-	    static int labelFrameSize = 30;
-
-        // Set the frame equal to the bottom middle. (the +1.5 X and -3 Y are for small offsets)
-        self.pctLabel.frame = CGRectMake(self.frame.size.width * 0.5 - (labelFrameSize / 2) + 1.5, self.frame.size.height - (labelFrameSize - 3), labelFrameSize, labelFrameSize);
-        
-	    static NSString *percentText = @"0%";
-
-        // Make sure the slider exists and isn't hidden. If it does, we calculate the percent. Otherwise (which shouldn't happen) set it to 0%
-        if (self.elapsedTrack && !self.elapsedTrack.hidden)
-        {
-            percentText = [NSString stringWithFormat:@"%i%%", (int) roundf(clamp(self.sliderValue, 0, 1)*100)];
-        }
-
-        // Set the label's text equal to the percent text we just calculated
-        self.pctLabel.text = percentText;
-        
-    }
+    self.pctLabel.text = percentText;
+}
 %end
