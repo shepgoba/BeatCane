@@ -29,7 +29,7 @@
 -(void)updateSliderConstraint {
     %orig;
 
-    NSString *percentText = @"0%%";
+    NSString *percentText = @"0%";
     if (self.elapsedTrack && !self.elapsedTrack.hidden) {
         percentText = [NSString stringWithFormat:@"%i%%", (int) roundf(clamp(self.sliderValue, 0, 1)*100)];
     }
